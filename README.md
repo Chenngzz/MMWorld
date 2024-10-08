@@ -8,25 +8,9 @@
 <sup style="color: #FFB6C1;">*</sup>Equal contribution
 
 <a href='https://arxiv.org/abs/2406.08407'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://mmworld-bench.github.io/'><img src='https://img.shields.io/badge/Project-Page-green'></a> <a href='https://huggingface.co/datasets/Xuehai/MMWorld'><img src='https://img.shields.io/badge/🤗-Dataset-blue'></a> <a href='https://eval.ai/web/challenges/challenge-page/2359'><img src='https://img.shields.io/badge/EvalAI-Challenge-orange'>
-<a href='https://huggingface.co/spaces/Xuehai/MMWorld'><img src='https://img.shields.io/badge/Space-HuggingFace-yellow'>
 </a>
 
-![Teaser figure](figures/teaser.png)
-
-
-## TODO
-- [x] Release dataset
-- [x] Release evaluation code  
-- [x] EvalAI server setup
-- [x] Hugging Face server setup
-- [x] Support evaluation with lmms-eval
-
-## :fire: News
-* **[2024.09.21]** We integrate the benchmark into lmms-eval.
-* **[2024.09.17]** We set up the Hugging Face server.
-* **[2024.08.9]** We set up the EvalAI server. The portal will open for submissions soon.
-* **[2024.07.1]** We add the evaluation toolkit.
-* **[2024.06.12]** We release our dataset.
+![Teaser figure](figures/overall.png)
 
 
 
@@ -43,71 +27,15 @@ Each entry in the dataset contains the following fields:
 
 ## Example Entry
 
-```json
-{
-  "video_id": "eng_vid1",
-  "video_url": "https://youtu.be/-e1_QhJ1EhQ",
-  "discipline": "Tech & Engineering",
-  "subdiscipline": "Robotics",
-  "captions": [
-    "The humanoid robot Atlas interacts with objects and modifies the course to reach its goal."
-  ],
-  "questions": [
-    {
-      "type": "Explanation",
-      "question": "Why is the engineer included at the beginning of the video?",
-      "options": {
-        "a": "The reason might be to imply the practical uses of Atlas in a commercial setting, to be an assistant who can perform complex tasks",
-        "b": "To show how professional engineers can be forgetful sometimes",
-        "c": "The engineer is controlling the robot manually",
-        "d": "The engineer is instructing Atlas to build a house"
-      },
-      "answer": "The reason might be to imply the practical uses of Atlas in a commercial setting, to be an assistant who can perform complex tasks",
-      "requires_domain_knowledge": false,
-      "requires_audio": false,
-      "requires_visual": true,
-      "question_only": false,
-      "correct_answer_label": "a"
-    }
-  ]
-}
-```
-
 
 ## Evaluation
-
-You can do evaluation by running our evaluation code [eval.py](evaluation/eval.py). Note that access to the GPT-4 API is required, as defined in line 387 of `eval.py`.
-To use our example evaluation code, you need to define your model initialization function, such as:
-```python
-modelname_init()
-```
-at line 357 of eval.py, and the model answer function, such as:
-```python
-modelname_answer()
-``` 
-at line 226 of eval.py.
-
-Alternatively, you may prepare your model results and submit them to the EvalAI server. The model results format should be as follows:
-
-```json
-{
-    "detailed_results": [
-        {
-            "video_id": "eng_vid1",
-            "model_answer": "a</s>",
-        },
-        ...
-    ]
-}
-```
+You can do evaluation by running our evaluation code [eval.py](utils/gpt4_eval.py). 
+The deployment of the model can refer to [models](models).
 
 
 
 
-## License Agreement
-Please refer to [LICENSE](./LICENSE.md).
-All videos of the MMworld benchmark are obtained from the Internet which are not property of our institutions. The copyright remains with the original owners of the video.
-Should you encounter any data samples violating the copyright or licensing regulations of any site, please contact us. Upon verification, those samples will be promptly removed.
+
 
 
 ## Citation
